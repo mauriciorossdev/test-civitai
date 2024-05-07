@@ -1,24 +1,46 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import ButtonIcon from "../buttonIcon/buttonIcon";
 
 interface PopoverProps {
     children: React.ReactNode;
 }
 
+/**
+ * 
+ * @param param0 
+ * @description Popover component to display a popover menu on click event
+ * @returns 
+ */
 const Popover = (
     { children }: PopoverProps
 ) => {
+    const popoverRef = useRef<HTMLDivElement>(null);
+
     const [isOpen, setIsOpen] = useState(false);
 
     const togglePopover = () => {
         setIsOpen(!isOpen);
     };
 
+
+    useEffect(() => {
+        const handleClickOutside = (event: MouseEvent) => {
+            if (popoverRef.current && !popoverRef.current.contains(event.target as Node)) {
+                setIsOpen(false);
+            }
+        };
+
+        document.addEventListener("mousedown", handleClickOutside);
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside);
+        };
+    }, []);
+
     return (
-        <div className="relative ">
+        <div className="relative flex justify-end" ref={popoverRef}>
 
             <ButtonIcon
-                buttonClassName="relative flex justify-center"
+                buttonClassName="relative "
                 imageClassName="max-w-[22px] max-h-[22px] mx-auto my-0"
                 icon="/dots.svg"
                 width={28}
@@ -26,7 +48,6 @@ const Popover = (
                 alt="dots menu image"
                 id={'opt-popover'}
                 onClick={togglePopover}
-
             />
             {isOpen && (
                 <>
@@ -42,3 +63,4 @@ const Popover = (
 };
 
 export default Popover;
+
