@@ -1,10 +1,11 @@
-interface Stats {
+export interface StatsType {
     cryCount: number;
     laughCount: number;
     likeCount: number;
     dislikeCount: number;
     heartCount: number;
     commentCount: number;
+    tipCount: number;
   }
   
   interface Resource {
@@ -36,7 +37,7 @@ interface Stats {
     "ControlNet Guidance Strength": string;
   }
   
-  interface ImageData {
+  export interface ImageData {
     id: number;
     url: string;
     hash: string;
@@ -47,7 +48,7 @@ interface Stats {
     browsingLevel: number;
     createdAt: string;
     postId: number;
-    stats: Stats;
+    stats: StatsType;
     meta: Meta;
     username: string;
   }

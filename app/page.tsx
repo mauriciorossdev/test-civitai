@@ -4,6 +4,7 @@ import axios from "axios";
 import CardImage from "@/components/cardImage/cardImage";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { useInView } from 'react-intersection-observer';
+import { ImageData } from "@/types/images-civitai";
 
 
 export default function Home() {
@@ -46,11 +47,11 @@ export default function Home() {
 
   });
 
-/**
- * 
- * @param id 
- * Remove image from the list of images
- */
+  /**
+   * 
+   * @param id 
+   * Remove image from the list of images
+   */
   const removeImage = (id: number) => {
     const newImages = Images.filter((image: ImageData) => image.id !== id);
     setImages(newImages);
@@ -142,7 +143,7 @@ export default function Home() {
                   handleRemoveImage={removeImage}
                   handleSaveImage={handleSaveImage}
                   handleViewImage={handleViewImage}
-                  />)
+                />)
               }
             })
           }

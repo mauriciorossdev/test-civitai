@@ -3,6 +3,7 @@ import Image from "next/image";
 import ButtonIcon from "../buttonIcon/buttonIcon";
 import { useState } from "react";
 import Popover from "../popover/popover";
+import { StatsType } from "@/types/images-civitai";
 
 interface cardImageProps {
     image: {
@@ -13,6 +14,7 @@ interface cardImageProps {
         };
         width: number;
         height: number;
+        stats: StatsType;
     };
     id: string;
     handleRemoveImage?: (id: number) => void;
@@ -120,7 +122,7 @@ export const CardImage = (
 
             />
 
-            
+
 
             <div className="absolute w-full p-1 bottom-0 left-0 flex justify-between items-center">
                 <div className="bg-[#25262b99] shadow-[0_2px_6px_1px_rgba(0,0,0,0.16)] p-1">
@@ -131,7 +133,7 @@ export const CardImage = (
                                 width={28}
                                 height={28}
                                 alt="like image"
-                            >👍 1000</ButtonIcon>
+                            >👍 {image.stats.likeCount}</ButtonIcon>
 
                         </li>
 
@@ -140,8 +142,8 @@ export const CardImage = (
                                 buttonClassName="relative flex justify-center text-xs "
                                 width={28}
                                 height={28}
-                                alt="like image"
-                            >❤️ 1000</ButtonIcon>
+                                alt="heart image"
+                            >❤️ {image.stats.heartCount}</ButtonIcon>
 
                         </li>
 
@@ -150,8 +152,8 @@ export const CardImage = (
                                 buttonClassName="relative flex justify-center text-xs "
                                 width={28}
                                 height={28}
-                                alt="like image"
-                            >😂 1000</ButtonIcon>
+                                alt="laugh image"
+                            >😂 {image.stats.laughCount}</ButtonIcon>
                         </li>
 
                         <li>
@@ -160,7 +162,7 @@ export const CardImage = (
                                 width={28}
                                 height={28}
                                 alt="like image"
-                            >😢 1000</ButtonIcon>
+                            >😢 {image.stats.cryCount}</ButtonIcon>
                         </li>
 
                         <li className="flex">
@@ -172,7 +174,7 @@ export const CardImage = (
                                 height={28}
                                 alt="comment image"
                             > <p className="text-[#f59f00] ">
-                                    40</p> </ButtonIcon> 
+                                    {image.stats?.tipCount || 0}</p> </ButtonIcon>
                         </li>
                     </ul>
                 </div>
