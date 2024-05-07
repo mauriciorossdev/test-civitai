@@ -15,8 +15,15 @@ const config: Config = {
       },
     },
     colors: {
+      ...require("tailwindcss/colors"),
       vulcan: {
         500: "#373A40",
+      },
+      black_russian: {
+        500: "#25262B",
+      },
+      link_water: {
+        500: "#C1C2C5",
       },
     },
   },
